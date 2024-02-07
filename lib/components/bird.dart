@@ -10,6 +10,7 @@ import 'package:tap_bird/game/tap_bird_game.dart';
 
 class Bird extends SpriteGroupComponent<BirdMovement> with HasGameRef<TapBirdGame>,CollisionCallbacks {
   Bird();
+  int score=0;
 
   @override
   Future<void> onLoad() async {
@@ -46,7 +47,14 @@ class Bird extends SpriteGroupComponent<BirdMovement> with HasGameRef<TapBirdGam
   }
 
   void gameOver() {
+    gameRef.overlays.add('gameOver');
     gameRef.pauseEngine();
+    game.isHit=true;
+  }
+
+  void reset() {
+    position = Vector2(50, gameRef.size.y / 2 - size.y / 2);
+    score=0;
   }
 
 }

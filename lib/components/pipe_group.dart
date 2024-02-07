@@ -25,7 +25,15 @@ class PipeGroup extends PositionComponent with HasGameRef<TapBirdGame>{
     position.x-=Configuration.gameSpeed*dt;
     if(position.x< -50){
       removeFromParent();
+      updateScore();
 
     }
+    if(gameRef.isHit){
+      removeFromParent();
+      gameRef.isHit=false;
+    }
+  }
+  void updateScore(){
+    gameRef.bird.score+=1;
   }
 }
